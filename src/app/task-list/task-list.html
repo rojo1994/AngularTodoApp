@@ -27,7 +27,7 @@
                 <a class="margin-right-button" mat-flat-button routerLink="/task/edit/{{task.id}}">Modificar</a>
                 <button class="margin-right-button" mat-flat-button color="warn"> Borrar </button>
                 @if(!task.done) {
-                    <button class="margin-right-button" mat-flat-button> Completar </button>
+                    <button class="margin-right-button" mat-flat-button onclick="completeTask(task.id)"> Completar </button>
                 }
             </td>
             

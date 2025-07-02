@@ -1,4 +1,5 @@
-import { Component, Input, numberAttribute } from '@angular/core';
+import { Component, inject, Input, numberAttribute } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { transform } from 'typescript';
 
 @Component({
@@ -11,5 +12,8 @@ export class TaskEdit {
 
   @Input({transform: numberAttribute})
   id!: number;
+
+  toastr = inject(ToastrService);
+  
 
 }

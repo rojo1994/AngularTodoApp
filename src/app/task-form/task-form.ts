@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-task-form',
@@ -8,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class TaskForm {
 
+  toastr = inject(ToastrService);
+
+
+  
 }
