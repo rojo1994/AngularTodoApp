@@ -1,0 +1,15 @@
+<mat-toolbar color="primary" class="navbar">
+  <span class="logo" routerLink="/">Tareas</span>
+
+  <span class="spacer"></span>
+
+  @if (authService.isLoggedIn(); as loggedIn) {
+    @if (loggedIn) {
+    <button mat-button routerLink="/tasks">Ver Tareas</button>
+    <button mat-button (click)="logout()">Cerrar sesión</button>
+    } @else {
+    <button mat-button routerLink="/login">Iniciar sesión</button>
+    <button mat-button routerLink="/register">Registrarse</button>
+    }
+  }
+</mat-toolbar>

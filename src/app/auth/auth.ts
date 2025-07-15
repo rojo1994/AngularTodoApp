@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { userPost, userType } from '../interfaces/register.interfaces';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,15 @@ export class Auth {
   http = inject(HttpClient);
   router = inject(Router);
 
+  private _isLoggedIn = signal(this.hasToken());
+
+  readonly isLoggedIn = computed(() => this._isLoggedIn());
+
   constructor() { }
+
+  private hasToken(): boolean {
+    return !!localStorage.getItem('access_token');
+  }
 
   register(data: userPost) {
     return this.http.post<userType>(this.baseUrl + '/register' , data);
@@ -37,6 +46,7 @@ export class Auth {
 
   saveToken(token: string) {
     localStorage.setItem('access_token', token);
+    this._isLoggedIn.set(true);
   }
 
   getToken(): string | null {
@@ -54,13 +64,10 @@ export class Auth {
     }
   }
 
-  isLoggedIn(): boolean {
-    const token = this.getToken();
-    return token !== null && !this.isTokenExpired(token);
-  }
 
   logout() {
     localStorage.removeItem('access_token');
+    this._isLoggedIn.set(false);
   }
 
 }

@@ -1,25 +1,25 @@
 <mat-card class="task-card">
-  <h2>Registro de usuario</h2>
+  <h2>Crear nueva tarea</h2>
 
-  <form [formGroup]="registerFG" (ngSubmit)="onSubmit()">
+  <form [formGroup]="taskFG" (ngSubmit)="createTask()">
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Nombre de usaurio</mat-label>
-      <input matInput formControlName="username" placeholder="Tu nombre de usuario" />
-      @if (registerFG.controls.username.touched && registerFG.controls.username.invalid) {
-        <mat-error>Nombre de usuario requerido</mat-error>
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="title" placeholder="Título de la tarea" />
+      @if (taskFG.controls.title.touched && taskFG.controls.title.invalid) {
+        <mat-error>El título es obligatorio</mat-error>
       }
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Contraseña</mat-label>
-      <input matInput type="password" formControlName="password" placeholder="Tu contraseña" />
-      @if (registerFG.controls.password.touched && registerFG.controls.password.invalid) {
-        <mat-error>Contraseña requerida</mat-error>
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="description" placeholder="Descripción de la tarea"></textarea>
+      @if (taskFG.controls.description.touched && taskFG.controls.description.invalid) {
+        <mat-error>La descripción es obligatoria</mat-error>
       }
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit" [disabled]="registerFG.invalid">
-      Registrarse
+    <button mat-raised-button color="primary" type="submit" [disabled]="taskFG.invalid">
+      Crear tarea
     </button>
 
     @if (error(); as err) {

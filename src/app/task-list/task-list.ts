@@ -39,8 +39,16 @@ export class TaskList implements OnInit {
     })
   }
 
-  completeTask(taskId: number) {
-    console.log(taskId);
+  completeTask(taskId: number) { 
+    this.taskService.completeTask(taskId).subscribe({
+      next: (resp) => {
+        this.toastr.success("La tarea se completo con exito.", "Tareas")
+        const task = this.tasks.find(t => t.id === taskId);
+        if (task) task.done = true;
+
+        this.cdr.detectChanges();
+      }
+    })
   }
 
   deleteTask(id: number) {
@@ -48,6 +56,7 @@ export class TaskList implements OnInit {
       next: (reso)=> {
         this.tasks = this.tasks?.filter(t => t.id !== id);
         this.toastr.info("La tarea se ha borrado.")
+        this.cdr.detectChanges();
       },
       error: () => console.error("Hubo un error al intentar borrar una tarea.")
     });
