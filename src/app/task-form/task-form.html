@@ -1,0 +1,29 @@
+<mat-card class="task-card">
+  <h2>Registro de usuario</h2>
+
+  <form [formGroup]="registerFG" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nombre de usaurio</mat-label>
+      <input matInput formControlName="username" placeholder="Tu nombre de usuario" />
+      @if (registerFG.controls.username.touched && registerFG.controls.username.invalid) {
+        <mat-error>Nombre de usuario requerido</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" formControlName="password" placeholder="Tu contraseña" />
+      @if (registerFG.controls.password.touched && registerFG.controls.password.invalid) {
+        <mat-error>Contraseña requerida</mat-error>
+      }
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="registerFG.invalid">
+      Registrarse
+    </button>
+
+    @if (error(); as err) {
+      <div class="error-text">{{ err }}</div>
+    }
+  </form>
+</mat-card>

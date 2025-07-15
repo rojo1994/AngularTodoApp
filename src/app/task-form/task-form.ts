@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -10,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 export class TaskForm {
 
   toastr = inject(ToastrService);
+
+  // taskFG: FormGroup<>;
 
 
   

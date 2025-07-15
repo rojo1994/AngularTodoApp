@@ -26,7 +26,6 @@ export class Login implements OnInit{
 
   readonly error = signal<string | null>(null);
 
-
   ngOnInit(): void {
     this.initForms();
   }

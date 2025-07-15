@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { userPost, userType } from '../interfaces/register.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -14,21 +15,25 @@ export class Auth {
 
   constructor() { }
 
-  login(username: string, password: string) {
-  const body = new HttpParams()
-    .set('username', username)
-    .set('password', password);
+  register(data: userPost) {
+    return this.http.post<userType>(this.baseUrl + '/register' , data);
+  }
 
-  return this.http.post<{ access_token: string }>(
-    `${this.baseUrl}/authenticate`,
-    body.toString(),
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    }
-  );
-}
+  login(username: string, password: string) {
+    const body = new HttpParams()
+      .set('username', username)
+      .set('password', password);
+
+    return this.http.post<{ access_token: string }>(
+      `${this.baseUrl}/authenticate`,
+      body.toString(),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+    );
+  }
 
   saveToken(token: string) {
     localStorage.setItem('access_token', token);
