@@ -1,7 +1,16 @@
 .margin-right-button {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .table-tasks {
-    margin-top: 20px;
+  margin-top: 20px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+
+  .margin-right-button {
+    margin-right: 0;
+  }
 }
