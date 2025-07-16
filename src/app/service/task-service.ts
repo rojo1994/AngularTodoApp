@@ -18,12 +18,16 @@ export class TaskService {
     return this.http.get<Task[]>(`${this.baseUrl}`);
   }
 
+  public getTask(id: number): Observable<Task> {
+    return this.http.get<Task>(`${this.baseUrl}/${id}`)
+  }
+
   public createTask(task : TaskPost): Observable<Task> {
     return  this.http.post<Task>(`${this.baseUrl}`, task);
   }
 
   public updateTask(id: number, task: TaskPost): Observable<Task> {
-    return this.http.post<Task>(`${this.baseUrl}/${id}`, task);
+    return this.http.put<Task>(`${this.baseUrl}/${id}`, task);
   }
 
   public deleteTask(id: number): Observable<any> {

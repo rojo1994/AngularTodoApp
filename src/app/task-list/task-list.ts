@@ -53,9 +53,9 @@ export class TaskList implements OnInit {
 
   deleteTask(id: number) {
     this.taskService.deleteTask(id).subscribe({
-      next: (reso)=> {
+      next: (resp)=> {
         this.tasks = this.tasks?.filter(t => t.id !== id);
-        this.toastr.info("La tarea se ha borrado.")
+        this.toastr.info("La tarea se ha borrado con exito.")
         this.cdr.detectChanges();
       },
       error: () => console.error("Hubo un error al intentar borrar una tarea.")

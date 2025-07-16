@@ -17,3 +17,9 @@ export interface Task {
     title: FormControl<string>;
     description: FormControl<string>;
   }
+
+  export interface TaskEditFG {
+    title: FormControl<string>;
+    description: FormControl<string>;
+    done: FormControl<boolean>;
+  }

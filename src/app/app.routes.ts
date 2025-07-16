@@ -8,6 +8,7 @@ import { Register } from './register/register';
 import { authRedirectGuard } from './auth/auth-redirect.guard';
 
 export const routes: Routes = [
+    { path: '', redirectTo: '/tasks', pathMatch: 'full' },
     {path: 'tasks', component: TaskList, canActivate: [authGuard]},
     {path: 'task/create', component: TaskForm, canActivate: [authGuard]},
     {path: 'task/edit/:id', component: TaskEdit, canActivate: [authGuard]},

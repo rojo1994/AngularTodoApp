@@ -1,1 +1,33 @@
-El id de la task es {{ id }}
+<mat-card class="task-card">
+  <h2>Editar tarea</h2>
+
+  <form [formGroup]="taskFG" (ngSubmit)="editTask()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="title" placeholder="Título de la tarea" />
+      @if (taskFG.controls.title.touched && taskFG.controls.title.invalid) {
+        <mat-error>El título es obligatorio</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="description" placeholder="Descripción de la tarea"></textarea>
+      @if (taskFG.controls.description.touched && taskFG.controls.description.invalid) {
+        <mat-error>La descripción es obligatoria</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="actions-row">
+      <mat-checkbox formControlName="done">Marcar como completada</mat-checkbox>
+      
+      <button mat-raised-button color="primary" type="submit" [disabled]="taskFG.invalid">
+        Guardar cambios
+      </button>
+    </div>
+    
+    @if (error(); as err) {
+      <div class="error-text">{{ err }}</div>
+    }
+  </form>
+</mat-card>
